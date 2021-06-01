@@ -1,26 +1,26 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <SourceSelector @update:source="source = $event"/>
+  <TreeView :source="source"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TreeView from './components/tree-view.vue'
+import SourceSelector from './components/source-selector.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    TreeView,
+    SourceSelector
+  },
+  data () {
+    return {
+      source: 'https://www.flymine.org/flymine/service/model?format=json'
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
