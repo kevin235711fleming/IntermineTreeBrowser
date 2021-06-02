@@ -1,5 +1,6 @@
 <template>
-    <li v-show="item.name!='id'">
+    <li v-show="item.name!='id'"
+        :class="{ attribute: !item.isTreeNode, expanded: showChildren }">
         <div
             @click="toggle">
             {{ item.displayName }}
@@ -63,3 +64,23 @@ export default {
 }
 
 </script>
+
+<style scoped>
+ul { margin-top: 0em }
+ul li { margin-bottom: 0em }
+li div {
+    display: inline-block;
+}
+li:not(.attribute)>div {
+    color: #9b4dca;
+    cursor: zoom-in;
+}
+li.expanded>div {
+    cursor: zoom-out;
+}
+ul ul { 
+    font-size: 98%;
+    margin-bottom: .5rem;
+}
+.attribute { list-style: square inside; }
+</style>
