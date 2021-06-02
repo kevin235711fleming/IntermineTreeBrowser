@@ -22,5 +22,7 @@ export default {
 </script>
 
 <style>
-
+body {
+  margin: 30px;
+}
 </style>

@@ -22,3 +22,7 @@
         }
     }
 </script>
+
+<style scoped>
+#humanmine { margin-left: .5rem }
+</style>
