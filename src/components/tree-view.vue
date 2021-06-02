@@ -7,20 +7,21 @@
               {{classObject.displayName}}
       </option>
     </select>
-    <ul v-if="rootId">
-      <li v-for="attribute in treeData[rootId].attributes"
-          :key="attribute.name"
-      >
-        {{attribute.displayName}}
-      </li>
+    <ul v-if="rootNode">
+      <tree-item
+        :item="makeTree(treeData[rootNode])" :rootNode=true></tree-item>
     </ul>
     <p v-else>No root class selected.</p>
   </div>
 </template>
 
 <script>
+import TreeItem from './tree-item.vue'
 export default {
   name: 'tree-view',
+  components: {
+    TreeItem
+  },
   props: {
     source: {
       type: String,
