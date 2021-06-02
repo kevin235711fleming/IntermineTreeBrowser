@@ -8,16 +8,18 @@
                 [{{ showChildren ? '-' : '+' }}]
             </span>
         </div>
-    <ul v-show="showChildren || root" v-if="showNode() || root">
-        <tree-item
-         v-for="child in makeSortedTree"
-         :key="child.name"
-         :item="child"
-         :treeData="treeData"
-         :root=false>
-        </tree-item>
-    </ul>
-  </li>
+        <transition name="fade" mode="out-in" appear>
+            <ul v-show="showChildren || root" v-if="showNode() || root">
+                <tree-item
+                 v-for="child in makeSortedTree"
+                 :key="child.name"
+                 :item="child"
+                 :treeData="treeData"
+                 :root=false>
+                </tree-item>
+            </ul>
+        </transition>
+    </li>
 </template>
 
 <script>
@@ -83,4 +85,11 @@ ul ul {
     margin-bottom: .5rem;
 }
 .attribute { list-style: square inside; }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
 </style>
