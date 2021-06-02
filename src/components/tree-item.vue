@@ -1,5 +1,5 @@
 <template>
-    <li>
+    <li v-show="item.name!='id'">
         <div
             @click="toggle">
             {{ item.displayName }}
