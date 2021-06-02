@@ -9,7 +9,7 @@
     </select>
     <ul v-if="rootNode">
       <tree-item
-        :item="makeTree(treeData[rootNode])" :rootNode=true></tree-item>
+        :item="treeData[rootNode]" :treeData=treeData :root=true></tree-item>
     </ul>
     <p v-else>No root class selected.</p>
   </div>
@@ -30,33 +30,16 @@ export default {
   },
   data () {
     return {
-      rootNode: null,
+      rootNode: false,
       treeData: { attributes: {}}
     }
   },
   methods: {
-    makeTree (root) {
-      let result = []
-      let leafAttributes = Object.fromEntries(Object.entries(root.attributes).sort())
-      let classNodes = Object.fromEntries(Object.entries({...root.collections, ...root.references}).sort())
-      Object.keys(leafAttributes).forEach(objectKey => result.push(leafAttributes[objectKey]))
-      Object.keys(classNodes).forEach(objectKey => {
-        classNodes[objectKey].showChildren = false
-        classNodes[objectKey].isTreeNode = true
-        result.push(classNodes[objectKey])
-      })
-      return result
-    }
+    
   },
   computed: {
     sortedTreeClasses () {
       return Object.fromEntries(Object.entries(this.treeData).sort())
-    },
-    sortedClassAttributes () {
-      return Object.fromEntries(Object.entries(this.treeData[this.rootNode].attributes).sort())
-    },
-    isTreeNode: function() {
-      return this.item.children && this.item.children.length;
     }
   },
   mounted () {
