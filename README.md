@@ -1,4 +1,4 @@
-# intermine
+# Intermine Tree Browser
 
 ## Project setup
 ```
